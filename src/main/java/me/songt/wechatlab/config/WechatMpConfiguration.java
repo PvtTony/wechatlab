@@ -1,22 +1,4 @@
-package me.songt.wechatback.config;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
-import me.songt.wechatback.handler.AbstractHandler;
-import me.songt.wechatback.handler.KfSessionHandler;
-import me.songt.wechatback.handler.LocationHandler;
-import me.songt.wechatback.handler.LogHandler;
-import me.songt.wechatback.handler.MenuHandler;
-import me.songt.wechatback.handler.MsgHandler;
-import me.songt.wechatback.handler.NullHandler;
-import me.songt.wechatback.handler.StoreCheckNotifyHandler;
-import me.songt.wechatback.handler.SubscribeHandler;
-import me.songt.wechatback.handler.UnsubscribeHandler;
+package me.songt.wechatlab.config;
 
 import me.chanjar.weixin.common.api.WxConsts;
 import me.chanjar.weixin.mp.api.WxMpConfigStorage;
@@ -24,11 +6,15 @@ import me.chanjar.weixin.mp.api.WxMpInMemoryConfigStorage;
 import me.chanjar.weixin.mp.api.WxMpMessageRouter;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.api.impl.WxMpServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 /**
- * wechat mp configuration
- *
- * @author Binary Wang
+ * Created by tony on 2017/5/6.
  */
 @Configuration
 @ConditionalOnClass(WxMpService.class)
@@ -44,7 +30,7 @@ public class WechatMpConfiguration
     {
         WxMpInMemoryConfigStorage configStorage = new WxMpInMemoryConfigStorage();
         configStorage.setAppId(this.properties.getAppId());
-        configStorage.setSecret(this.properties.getSecret());
+        configStorage.setSecret(this.properties.getAppSecret());
         configStorage.setToken(this.properties.getToken());
         configStorage.setAesKey(this.properties.getAesKey());
         return configStorage;
@@ -64,7 +50,7 @@ public class WechatMpConfiguration
     {
         final WxMpMessageRouter newRouter = new WxMpMessageRouter(wxMpService);
 
-        // 记录所有事件的日志 （异步执行）
+        /*// 记录所有事件的日志 （异步执行）
         newRouter.rule().handler(this.logHandler).next();
 
         // 接收客服会话管理事件
@@ -115,66 +101,8 @@ public class WechatMpConfiguration
                 .event(WxConsts.EVT_SCAN).handler(this.getScanHandler()).end();
 
         // 默认
-        newRouter.rule().async(false).handler(this.getMsgHandler()).end();
+        newRouter.rule().async(false).handler(this.getMsgHandler()).end();*/
 
         return newRouter;
     }
-
-    @Autowired
-    private LocationHandler locationHandler;
-
-    @Autowired
-    private MenuHandler menuHandler;
-
-    @Autowired
-    private MsgHandler msgHandler;
-
-    @Autowired
-    protected LogHandler logHandler;
-
-    @Autowired
-    protected NullHandler nullHandler;
-
-    @Autowired
-    protected KfSessionHandler kfSessionHandler;
-
-    @Autowired
-    protected StoreCheckNotifyHandler storeCheckNotifyHandler;
-
-    @Autowired
-    private UnsubscribeHandler unsubscribeHandler;
-
-    @Autowired
-    private SubscribeHandler subscribeHandler;
-
-    protected MenuHandler getMenuHandler()
-    {
-        return this.menuHandler;
-    }
-
-    protected SubscribeHandler getSubscribeHandler()
-    {
-        return this.subscribeHandler;
-    }
-
-    protected UnsubscribeHandler getUnsubscribeHandler()
-    {
-        return this.unsubscribeHandler;
-    }
-
-    protected AbstractHandler getLocationHandler()
-    {
-        return this.locationHandler;
-    }
-
-    protected MsgHandler getMsgHandler()
-    {
-        return this.msgHandler;
-    }
-
-    protected AbstractHandler getScanHandler()
-    {
-        return null;
-    }
-
 }
