@@ -7,7 +7,7 @@
     <artifactId>wechatlab</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
     <name>wechatlab</name>
     <description>Wechat lab</description>
@@ -23,7 +23,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
-
+        <!--<start-class>me.songt.wechatlab.WechatlabApplication</start-class>-->
     </properties>
 
     <dependencies>
@@ -60,6 +60,7 @@
             <groupId>com.github.binarywang</groupId>
             <artifactId>weixin-java-mp</artifactId>
             <version>2.6.0</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -74,6 +75,9 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>me.songt.wechatlab.WechatlabApplication</mainClass>
+                </configuration>
             </plugin>
         </plugins>
     </build>
