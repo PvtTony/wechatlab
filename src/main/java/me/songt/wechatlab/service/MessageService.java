@@ -11,4 +11,6 @@ public interface MessageService
     Page<MessageEntity> getMessages(int userId, int index, int pageSize, boolean descent, String sortField);
 
     MessageEntity sendMessage(int fromUserId, int toUserId, String content);
+
+    void sendMessageToStudent(int courseId, String content);
 }

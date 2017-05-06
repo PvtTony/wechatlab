@@ -48,5 +48,12 @@ public class MessageController
         return messageService.sendMessage(userId, to, content);
     }
 
+    @PostMapping("/api/message/course/{courseId}")
+    public boolean sendMessageToCourseStudents(@PathVariable("courseId") int courseId, @RequestParam String content)
+    {
+        messageService.sendMessageToStudent(courseId, content);
+        return true;
+    }
+
 
 }

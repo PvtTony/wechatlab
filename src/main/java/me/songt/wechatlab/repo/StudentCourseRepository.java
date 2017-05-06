@@ -15,4 +15,6 @@ import java.util.List;
 public interface StudentCourseRepository extends CrudRepository<StudentCourseEntity, Integer>
 {
     List<StudentCourseEntity> findBystudentId(int studentId);
+
+    List<StudentCourseEntity> findBycourseId(int courseId);
 }
