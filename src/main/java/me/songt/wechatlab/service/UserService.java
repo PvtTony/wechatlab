@@ -9,5 +9,9 @@ import org.springframework.stereotype.Service;
 @Service
 public interface UserService
 {
-    UserInfo authenticate(String username, String password);
+    UserInfo getUserByOpenId(String openId);
+
+    UserInfo bindStudent(int studentId, String password, String openId);
+
+    UserInfo bindTeacher(int teacherId, String password, String openId);
 }

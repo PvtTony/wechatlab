@@ -1,5 +1,7 @@
 package me.songt.wechatlab.service.impl;
 
+import me.songt.wechatlab.entity.StudentEntity;
+import me.songt.wechatlab.entity.TeacherEntity;
 import me.songt.wechatlab.entity.UserEntity;
 import me.songt.wechatlab.repo.StudentRepository;
 import me.songt.wechatlab.repo.TeacherRepository;
@@ -30,7 +32,7 @@ public class UserServiceImpl implements UserService
     private TeacherRepository teacherRepository;
 
 
-    @Override
+    /*@Override
     public UserInfo authenticate(String username, String password)
     {
         UserInfo info = null;
@@ -44,7 +46,7 @@ public class UserServiceImpl implements UserService
         {
             info = new UserInfo();
             info.setUserId(entity.getId());
-            info.setUserEmail(entity.getUserEmail());
+            info.setUserEmail(entity.getUserOpenId());
             info.setUserType(entity.getUserType());
             switch (info.getUserType())
             {
@@ -59,6 +61,75 @@ public class UserServiceImpl implements UserService
             }
         }
         return info;
+    }*/
+
+    @Override
+    public UserInfo getUserByOpenId(String openId)
+    {
+        UserInfo info = new UserInfo();
+        UserEntity entity = userRepository.findByuserOpenId(openId);
+        if (entity == null)
+        {
+            return null;
+        }
+
+        info.setUserId(entity.getId());
+        info.setUserOpenId(openId);
+        info.setUserType(entity.getUserType());
+        switch (info.getUserType())
+        {
+            case UserEntity.USER_STUDENT:
+                info.setTypeObject(studentRepository.findOne(entity.getUserTypeId()));
+                break;
+            case UserEntity.USER_TEACHER:
+                info.setTypeObject(teacherRepository.findOne(entity.getUserTypeId()));
+                break;
+            case UserEntity.USER_ADMIN:
+                break;
+        }
+        return info;
+    }
+
+    @Override
+    public UserInfo bindStudent(int studentId, String openId, String password)
+    {
+        UserEntity entity = new UserEntity();
+        entity.setUserOpenId(openId);
+        entity.setUserType(UserEntity.USER_STUDENT);
+        entity.setUserTypeId(studentId);
+        entity = userRepository.save(entity);
+        UserInfo userInfo = new UserInfo();
+        userInfo.setUserId(entity.getId());
+        userInfo.setUserType(UserEntity.USER_STUDENT);
+        StudentEntity stuEntity = studentRepository.findOne(studentId);
+        if (stuEntity == null && password.equals(stuEntity.getStudentPassword()))
+        {
+            return null;
+        }
+        userInfo.setTypeObject(stuEntity);
+        userInfo.setUserOpenId(openId);
+        return userInfo;
+    }
+
+    @Override
+    public UserInfo bindTeacher(int teacherId, String password, String openId)
+    {
+        UserEntity entity = new UserEntity();
+        entity.setUserOpenId(openId);
+        entity.setUserType(UserEntity.USER_STUDENT);
+        entity.setUserTypeId(teacherId);
+        entity = userRepository.save(entity);
+        UserInfo userInfo = new UserInfo();
+        userInfo.setUserId(entity.getId());
+        userInfo.setUserType(UserEntity.USER_TEACHER);
+        userInfo.setUserOpenId(openId);
+        TeacherEntity teacherEntity = teacherRepository.findOne(teacherId);
+        if (teacherEntity == null && password.equals(teacherEntity.getTeacherPassword()))
+        {
+            return null;
+        }
+        userInfo.setTypeObject(teacherEntity);
+        return userInfo;
     }
 
 

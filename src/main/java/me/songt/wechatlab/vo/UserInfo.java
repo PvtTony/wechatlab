@@ -6,8 +6,7 @@ package me.songt.wechatlab.vo;
 public class UserInfo
 {
     private int userId;
-    private String userName;
-    private String userEmail;
+    private String userOpenId;
     private int userType;
     private Object typeObject;
 
@@ -26,24 +25,14 @@ public class UserInfo
         this.userId = userId;
     }
 
-    public String getUserName()
+    public String getUserOpenId()
     {
-        return userName;
+        return userOpenId;
     }
 
-    public void setUserName(String userName)
+    public void setUserOpenId(String userOpenId)
     {
-        this.userName = userName;
-    }
-
-    public String getUserEmail()
-    {
-        return userEmail;
-    }
-
-    public void setUserEmail(String userEmail)
-    {
-        this.userEmail = userEmail;
+        this.userOpenId = userOpenId;
     }
 
     public int getUserType()

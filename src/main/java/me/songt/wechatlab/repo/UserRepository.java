@@ -10,7 +10,7 @@ import javax.transaction.Transactional;
 @Repository
 public interface UserRepository extends CrudRepository<UserEntity, Integer>
 {
-    UserEntity findByuserName(String userName);
+    UserEntity findByuserOpenId(String userName);
 
-    UserEntity findByuserEmail(String userEmail);
+//    UserEntity findByuserEmail(String userEmail);
 }

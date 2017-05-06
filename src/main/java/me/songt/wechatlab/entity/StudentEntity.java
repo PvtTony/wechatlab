@@ -2,6 +2,9 @@ package me.songt.wechatlab.entity;
 
 import javax.persistence.*;
 
+/**
+ * Created by tony on 2017/5/6.
+ */
 @Entity
 @Table(name = "student")
 public class StudentEntity
@@ -9,6 +12,7 @@ public class StudentEntity
     private int id;
     private String studentName;
     private int studentSchoolId;
+    private String studentPassword;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -47,6 +51,18 @@ public class StudentEntity
         this.studentSchoolId = studentSchoolId;
     }
 
+    @Basic
+    @Column(name = "student_password", nullable = true, length = 255)
+    public String getStudentPassword()
+    {
+        return studentPassword;
+    }
+
+    public void setStudentPassword(String studentPassword)
+    {
+        this.studentPassword = studentPassword;
+    }
+
     @Override
     public boolean equals(Object o)
     {
@@ -73,6 +89,10 @@ public class StudentEntity
         {
             return false;
         }
+        if (studentPassword != null ? !studentPassword.equals(that.studentPassword) : that.studentPassword != null)
+        {
+            return false;
+        }
 
         return true;
     }
@@ -83,6 +103,7 @@ public class StudentEntity
         int result = id;
         result = 31 * result + (studentName != null ? studentName.hashCode() : 0);
         result = 31 * result + studentSchoolId;
+        result = 31 * result + (studentPassword != null ? studentPassword.hashCode() : 0);
         return result;
     }
 }
