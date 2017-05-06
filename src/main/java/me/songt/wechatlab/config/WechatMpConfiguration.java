@@ -6,6 +6,7 @@ import me.chanjar.weixin.mp.api.WxMpInMemoryConfigStorage;
 import me.chanjar.weixin.mp.api.WxMpMessageRouter;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.api.impl.WxMpServiceImpl;
+import me.songt.wechatlab.handler.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -50,7 +51,7 @@ public class WechatMpConfiguration
     {
         final WxMpMessageRouter newRouter = new WxMpMessageRouter(wxMpService);
 
-        /*// 记录所有事件的日志 （异步执行）
+        // 记录所有事件的日志 （异步执行）
         newRouter.rule().handler(this.logHandler).next();
 
         // 接收客服会话管理事件
@@ -101,8 +102,66 @@ public class WechatMpConfiguration
                 .event(WxConsts.EVT_SCAN).handler(this.getScanHandler()).end();
 
         // 默认
-        newRouter.rule().async(false).handler(this.getMsgHandler()).end();*/
+        newRouter.rule().async(false).handler(this.getMsgHandler()).end();
 
         return newRouter;
     }
+
+    @Autowired
+    private LocationHandler locationHandler;
+
+    @Autowired
+    private MenuHandler menuHandler;
+
+    @Autowired
+    private MsgHandler msgHandler;
+
+    @Autowired
+    protected LogHandler logHandler;
+
+    @Autowired
+    protected NullHandler nullHandler;
+
+    @Autowired
+    protected KfSessionHandler kfSessionHandler;
+
+    @Autowired
+    protected StoreCheckNotifyHandler storeCheckNotifyHandler;
+
+    @Autowired
+    private UnsubscribeHandler unsubscribeHandler;
+
+    @Autowired
+    private SubscribeHandler subscribeHandler;
+
+    protected MenuHandler getMenuHandler()
+    {
+        return this.menuHandler;
+    }
+
+    protected SubscribeHandler getSubscribeHandler()
+    {
+        return this.subscribeHandler;
+    }
+
+    protected UnsubscribeHandler getUnsubscribeHandler()
+    {
+        return this.unsubscribeHandler;
+    }
+
+    protected AbstractHandler getLocationHandler()
+    {
+        return this.locationHandler;
+    }
+
+    protected MsgHandler getMsgHandler()
+    {
+        return this.msgHandler;
+    }
+
+    protected AbstractHandler getScanHandler()
+    {
+        return null;
+    }
+
 }
