@@ -1,24 +1,25 @@
 package me.songt.wechatlab.entity;
 
-import org.hibernate.annotations.GeneratorType;
-
 import javax.persistence.*;
 
+/**
+ * Created by tony on 2017/5/6.
+ */
 @Entity
 @Table(name = "course")
 public class CourseEntity
 {
     private int id;
     private String courseName;
-    private String courseTime;
-    private int courseRepeatType;
     private int courseTeacher;
     private String courseLocation;
     private String courseComment;
+    private int courseStartTime;
+    private int courseEndTime;
+    private int courseWeekday;
 
     @Id
     @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
     public int getId()
     {
         return id;
@@ -39,30 +40,6 @@ public class CourseEntity
     public void setCourseName(String courseName)
     {
         this.courseName = courseName;
-    }
-
-    @Basic
-    @Column(name = "course_time", nullable = false, length = 255)
-    public String getCourseTime()
-    {
-        return courseTime;
-    }
-
-    public void setCourseTime(String courseTime)
-    {
-        this.courseTime = courseTime;
-    }
-
-    @Basic
-    @Column(name = "course_repeat_type", nullable = false)
-    public int getCourseRepeatType()
-    {
-        return courseRepeatType;
-    }
-
-    public void setCourseRepeatType(int courseRepeatType)
-    {
-        this.courseRepeatType = courseRepeatType;
     }
 
     @Basic
@@ -101,6 +78,42 @@ public class CourseEntity
         this.courseComment = courseComment;
     }
 
+    @Basic
+    @Column(name = "course_start_time", nullable = false)
+    public int getCourseStartTime()
+    {
+        return courseStartTime;
+    }
+
+    public void setCourseStartTime(int courseStartTime)
+    {
+        this.courseStartTime = courseStartTime;
+    }
+
+    @Basic
+    @Column(name = "course_end_time", nullable = false)
+    public int getCourseEndTime()
+    {
+        return courseEndTime;
+    }
+
+    public void setCourseEndTime(int courseEndTime)
+    {
+        this.courseEndTime = courseEndTime;
+    }
+
+    @Basic
+    @Column(name = "course_weekday", nullable = false)
+    public int getCourseWeekday()
+    {
+        return courseWeekday;
+    }
+
+    public void setCourseWeekday(int courseWeekday)
+    {
+        this.courseWeekday = courseWeekday;
+    }
+
     @Override
     public boolean equals(Object o)
     {
@@ -119,19 +132,23 @@ public class CourseEntity
         {
             return false;
         }
-        if (courseRepeatType != that.courseRepeatType)
-        {
-            return false;
-        }
         if (courseTeacher != that.courseTeacher)
         {
             return false;
         }
-        if (courseName != null ? !courseName.equals(that.courseName) : that.courseName != null)
+        if (courseStartTime != that.courseStartTime)
         {
             return false;
         }
-        if (courseTime != null ? !courseTime.equals(that.courseTime) : that.courseTime != null)
+        if (courseEndTime != that.courseEndTime)
+        {
+            return false;
+        }
+        if (courseWeekday != that.courseWeekday)
+        {
+            return false;
+        }
+        if (courseName != null ? !courseName.equals(that.courseName) : that.courseName != null)
         {
             return false;
         }
@@ -152,11 +169,12 @@ public class CourseEntity
     {
         int result = id;
         result = 31 * result + (courseName != null ? courseName.hashCode() : 0);
-        result = 31 * result + (courseTime != null ? courseTime.hashCode() : 0);
-        result = 31 * result + courseRepeatType;
         result = 31 * result + courseTeacher;
         result = 31 * result + (courseLocation != null ? courseLocation.hashCode() : 0);
         result = 31 * result + (courseComment != null ? courseComment.hashCode() : 0);
+        result = 31 * result + courseStartTime;
+        result = 31 * result + courseEndTime;
+        result = 31 * result + courseWeekday;
         return result;
     }
 }

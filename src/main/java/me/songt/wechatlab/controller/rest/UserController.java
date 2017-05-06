@@ -1,5 +1,8 @@
 package me.songt.wechatlab.controller.rest;
 
+import me.chanjar.weixin.common.exception.WxErrorException;
+import me.chanjar.weixin.mp.api.WxMpService;
+import me.chanjar.weixin.mp.bean.result.WxMpOAuth2AccessToken;
 import me.songt.wechatlab.service.UserService;
 import me.songt.wechatlab.vo.UserInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +20,9 @@ public class UserController
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private WxMpService wxMpService;
+
     @GetMapping("/api/bind/student")
     public UserInfo bindStudent(@RequestParam int studentId,
                                 @RequestParam String password,
@@ -33,6 +39,20 @@ public class UserController
         return userService.bindTeacher(teacherId, password, openId);
     }
 
+    @GetMapping("/api/user/openid")
+    public String getOpenId(@RequestParam String code, @RequestParam String state)
+    {
+        try
+        {
+            WxMpOAuth2AccessToken token = wxMpService.oauth2getAccessToken(code);
+            return token.getOpenId();
+
+        } catch (WxErrorException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
 
 
 
