@@ -39,7 +39,7 @@ public class UserController
         return userService.bindTeacher(teacherId, password, openId);
     }
 
-    @GetMapping("/api/user/openid")
+    /*@GetMapping("/api/user/openid")
     public String getOpenId(@RequestParam String code, @RequestParam String state)
     {
         try
@@ -52,7 +52,7 @@ public class UserController
             e.printStackTrace();
         }
         return null;
-    }
+    }*/
 
 
 
