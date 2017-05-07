@@ -41,7 +41,7 @@
 
             var id = $("#sid").val();
             var pass = $("#password").val();
-            var url = "http://lab.songt.me/api/bind/" + type + "?" + type + "Id=" + id + "&password=" + pass + "&openId=" + openId;
+            var url = "http://lab.songt.me/api/bind/" + type + "?" + "studentId=" + id + "&password=" + pass + "&openId=" + openId;
             $.ajax({
                 type: "GET",
                 url: url,
@@ -109,7 +109,7 @@
         <h1>注册失败</h1>
     </div>
     <div data-role="main" align="center">
-        <img src="images/error.jpg" height="256" width="256"/>
+        <img src="./images/error.jpg" height="256" width="256"/>
         <a href="#" data-role="button">返回</a>
     </div>
 </div>

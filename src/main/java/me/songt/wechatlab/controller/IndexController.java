@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
@@ -25,7 +26,7 @@ public class IndexController
     }
 
     @GetMapping("/bind")
-    public String bind(String code, String state, Model model)
+    public String bind(@RequestParam String code, @RequestParam String state, Model model)
     {
         try
         {
