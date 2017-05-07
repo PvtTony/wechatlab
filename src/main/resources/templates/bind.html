@@ -1,4 +1,4 @@
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -68,6 +68,8 @@
 </head>
 
 <body>
+<!--/*@thymesVar id="openid" type="java.lang.String"*/-->
+<p th:text="${openid}"></p>
 <div data-role="page" id="login">
     <div data-role="header">
         <h1>注册</h1>
@@ -90,7 +92,7 @@
             <label for="rdo2">教师</label>
         </fieldset>
 
-        <a href="#" data-role="button" onclick="login(${openid})">提交</a>
+        <a href="#" data-role="button" onclick="login()">提交</a>
     </div>
 </div>
 

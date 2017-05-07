@@ -26,6 +26,7 @@ public class UserController
     @Autowired
     private WxMpService wxMpService;
 
+
     @GetMapping("/api/bind/student")
     public UserInfo bindStudent(@RequestParam int studentId,
                                 @RequestParam String password,
