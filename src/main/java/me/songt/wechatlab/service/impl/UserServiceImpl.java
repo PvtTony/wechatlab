@@ -8,6 +8,8 @@ import me.songt.wechatlab.repo.TeacherRepository;
 import me.songt.wechatlab.repo.UserRepository;
 import me.songt.wechatlab.service.UserService;
 import me.songt.wechatlab.vo.UserInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -31,7 +33,7 @@ public class UserServiceImpl implements UserService
     @Autowired
     private TeacherRepository teacherRepository;
 
-
+    private final Logger logger = LoggerFactory.getLogger(this.getClass());
     /*@Override
     public UserInfo authenticate(String username, String password)
     {
@@ -93,27 +95,30 @@ public class UserServiceImpl implements UserService
     @Override
     public UserInfo bindStudent(int studentId, String openId, String password)
     {
+        logger.info(openId);
+        StudentEntity stuEntity = studentRepository.findOne(studentId);
+
+        if (stuEntity == null && password.equals(stuEntity.getStudentPassword()))
+        {
+            return null;
+        }
         UserEntity entity = new UserEntity();
         entity.setUserOpenId(openId);
         entity.setUserType(UserEntity.USER_STUDENT);
         entity.setUserTypeId(studentId);
         entity = userRepository.save(entity);
         UserInfo userInfo = new UserInfo();
-        userInfo.setUserId(entity.getId());
         userInfo.setUserType(UserEntity.USER_STUDENT);
-        StudentEntity stuEntity = studentRepository.findOne(studentId);
-        if (stuEntity == null && password.equals(stuEntity.getStudentPassword()))
-        {
-            return null;
-        }
         userInfo.setTypeObject(stuEntity);
         userInfo.setUserOpenId(openId);
+        userInfo.setUserId(entity.getId());
         return userInfo;
     }
 
     @Override
     public UserInfo bindTeacher(int teacherId, String password, String openId)
     {
+        logger.info(openId);
         UserEntity entity = new UserEntity();
         entity.setUserOpenId(openId);
         entity.setUserType(UserEntity.USER_STUDENT);
