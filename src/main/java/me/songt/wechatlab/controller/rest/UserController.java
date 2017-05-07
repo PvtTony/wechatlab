@@ -27,12 +27,13 @@ public class UserController
     private WxMpService wxMpService;
 
 
+
     @GetMapping("/api/bind/student")
     public UserInfo bindStudent(@RequestParam int studentId,
                                 @RequestParam String password,
                                 @RequestParam String openId)
     {
-        return userService.bindStudent(studentId, password, openId);
+        return userService.bindStudent(studentId, openId, password);
     }
 
     @GetMapping("/api/bind/teacher")
@@ -40,7 +41,7 @@ public class UserController
                                 @RequestParam String password,
                                 @RequestParam String openId)
     {
-        return userService.bindTeacher(teacherId, password, openId);
+        return userService.bindTeacher(teacherId, openId, password);
     }
 
 
