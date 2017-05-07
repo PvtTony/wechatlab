@@ -31,7 +31,8 @@
          });
          }*/
 
-        function login(openId) {
+        function login() {
+            openId = $("#openId").html;
             var type = "";
             if ($("input[name='rdoA']:checked").val() == 1) {
                 type = "student";
@@ -69,7 +70,7 @@
 
 <body>
 <!--/*@thymesVar id="openid" type="java.lang.String"*/-->
-<p th:text="${openid}"></p>
+<p th:text="${openid}" id="openId"></p>
 <div data-role="page" id="login">
     <div data-role="header">
         <h1>注册</h1>
