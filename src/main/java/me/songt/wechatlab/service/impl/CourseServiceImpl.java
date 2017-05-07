@@ -53,9 +53,11 @@ public class CourseServiceImpl implements CourseService
         old.setCourseName(newCourse.getCourseName());
         old.setCourseComment(newCourse.getCourseComment());
         old.setCourseLocation(newCourse.getCourseLocation());
-        old.setCourseRepeatType(newCourse.getCourseRepeatType());
+        old.setCourseStartTime(newCourse.getCourseStartTime());
+        old.setCourseEndTime(newCourse.getCourseEndTime());
+        old.setCourseWeekday(newCourse.getCourseWeekday());
         old.setCourseTeacher(newCourse.getCourseTeacher());
-        old.setCourseTime(newCourse.getCourseTime());
+//        old.setCourseTime(newCourse.getCourseTime());
         old = courseRepository.save(old);
         return old;
     }
