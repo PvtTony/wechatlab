@@ -1,0 +1,69 @@
+﻿<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="scripts/login.js"></script>
+
+    <style>
+        table {
+            width: 100%;
+        }
+
+        .margin{
+            margin-right: 5%;
+            margin-left: 5%;
+        }
+    </style>
+</head>
+
+<body>
+<div data-role="page" id="login">
+    <div data-role="header">
+        <h1>注册</h1>
+    </div>
+    <div data-role="main" align="center" class="margin">
+        <div class="ui-field-contain">
+
+            <label for="sid">学号:</label>
+            <input type="text" name="sid" id="sid">
+
+            <label for="password">密码:</label>
+            <input type="password" name="password" id="password">
+
+        </div>
+
+        <fieldset data-role="controlgroup" data-type="horizontal" id="type">
+            <input type="radio" name="rdoA" id="rdo1" value="1" checked="checked"/>
+            <label for="rdo1">学生</label>
+            <input type="radio" name="rdoA" id="rdo2" value="2"/>
+            <label for="rdo2">教师</label>
+        </fieldset>
+
+        <a href="#" data-role="button" onclick="getOpenId()">提交</a>
+    </div>
+</div>
+
+<div data-role="page" id="check">
+    <div data-role="header">
+        <h1>注册成功</h1>
+    </div>
+    <div data-role="main" align="center">
+        <img src="images/chack.png" height="256" width="256"/>
+        <a href="#" data-role="button">返回</a>
+    </div>
+</div>
+
+<div data-role="page" id="error">
+    <div data-role="header">
+        <h1>注册失败</h1>
+    </div>
+    <div data-role="main" align="center">
+        <img src="images/error.jpg" height="256" width="256"/>
+        <a href="#" data-role="button">返回</a>
+    </div>
+</div>
+
+</body>

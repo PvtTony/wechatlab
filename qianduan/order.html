@@ -1,0 +1,232 @@
+﻿<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css"/>
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+
+    <script>
+        function a() {
+//            alert("adf");
+            $.mobile.changePage("#info");
+
+        }
+    </script>
+
+    <style>
+        table {
+            width: 100%;
+        }
+
+        td:not(.firstCol) {
+            width: 13.5%;
+            word-wrap: break-word;
+            word-break: break-all;
+        }
+
+        .firstCol {
+            width: 5.5%;
+        }
+
+        td {
+            font-size: 10px;
+            border-bottom: 1px solid #d6d6d6;
+            border-right: 1px solid #d6d6d6;
+            border-left: 1px solid #d6d6d6;
+        }
+
+        tr:nth-child(even) {
+            background: #e9e9e9;
+        }
+
+        .titleFont{
+            font-size: 10px;
+            color: #0088bb;
+        }
+
+
+    </style>
+</head>
+
+
+<body>
+<div data-role="page" id="schedule">
+
+    <div data-role="header">
+        <h1>欢迎来到我的主页</h1>
+    </div>
+
+    <div data-role="main" class="ui-content">
+        <table data-role="table" class="ui-responsive" data-mode="columntoggle">
+            <tr>
+                <td align="center" class="firstCol"></td>
+                <td align="center">星期<br>一</td>
+                <td align="center">星期<br>二</td>
+                <td align="center">星期<br>三</td>
+                <td align="center">星期<br>四</td>
+                <td align="center">星期<br>五</td>
+                <td align="center">星期<br>六</td>
+                <td align="center">星期<br>日</td>
+            </tr>
+            <tr>
+                <td class="firstCol"><br>1<br></td>
+                <td rowspan=2 align=center onclick="a()">Java EE高级编程</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="firstCol"><br>2<br></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="firstCol"><br>3<br></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td rowspan=2 align=center>数据结构</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="firstCol"><br>4<br></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="firstCol"><br>5<br></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="firstCol"><br>6<br></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="firstCol"><br>7<br></td>
+                <td></td>
+                <td rowspan=2 align=center>面向对象分析与设计导论</td>
+                <td></td>
+                <td rowspan=2 align=center>软件综合实训</td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="firstCol"><br>8<br></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="firstCol"><br>9<br></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="firstCol"><br>10<br></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="firstCol"><br>11<br></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="firstCol"><br>12<br></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td class="firstCol"><br>13<br></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+
+        </table>
+    </div>
+</div>
+
+<div data-role="page" id="info">
+    <div data-role="header">
+        <!--<a href="#" class="ui-btn ui-btn-left ui-btn-icon-left ui-btn-icon-left">-->
+        <h1>课程信息</h1>
+    </div>
+
+    <div data-role="main" class="ui-content">
+
+        <h1 align="center" style="color: red">我想请假</h1>
+        <a href="#check" data-role="button" >确定</a>
+
+    </div>
+
+</div>
+
+<div data-role="page" id="check">
+    <div data-role="header">
+        <!--<a href="#" class="ui-btn ui-btn-left ui-btn-icon-left ui-btn-icon-left">-->
+        <h1>请假成功</h1>
+    </div>
+
+    <div data-role="main" align="center">
+        <img src="images/chack.png" height="256" width="256"/>
+        <a href="#" data-role="button" onclick="">返回</a>
+    </div>
+
+</div>
+
+
+</body>
